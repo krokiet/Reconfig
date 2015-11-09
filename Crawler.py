@@ -5,8 +5,9 @@ import random
 
 
 class Crawler(threading.Thread):
-    def __init__(self):
+    def __init__(self, thread_id):
         super(Crawler, self).__init__()
+        self.thread_id = thread_id
         self.c = pycurl.Curl()
         self.responseTimes = 0
         self.verbose = False
@@ -24,8 +25,8 @@ class Crawler(threading.Thread):
         return
 
     def init(self):
-        self.c.setopt(self.c.COOKIEFILE, 'cookies.txt')
-        self.c.setopt(self.c.COOKIEJAR, 'cookies.txt')
+        self.c.setopt(self.c.COOKIEFILE, 'cookies/cookies'+str(self.thread_id)+'.txt')
+        self.c.setopt(self.c.COOKIEJAR, 'cookies/cookies'+str(self.thread_id)+'.txt')
         return
 
     def login(self):
@@ -47,7 +48,6 @@ class Crawler(threading.Thread):
     def crawl(self, jumps):
         for i in range(1, jumps):
             self.page(random.choice(self.pages))
-
         return
 
     def page(self, page):
