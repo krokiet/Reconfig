@@ -11,6 +11,7 @@ class Crawler(threading.Thread):
         self.c = pycurl.Curl()
         self.login_string = "krokiet"
         self.password_string = "pkpk11"
+        self.responseTimes = 0
 
     def run(self):
         self.init()
@@ -30,24 +31,25 @@ class Crawler(threading.Thread):
         self.c.setopt(self.c.POSTFIELDS, 'login='+self.login_string+'&password='+self.password_string)
         self.c.setopt(pycurl.WRITEFUNCTION, lambda x: None)
         self.c.perform()
-        self.print_response()
+        self.handle_response()
         return
 
     def logout(self):
         logging.debug('trying to logout')
         self.c.setopt(self.c.URL, 'http://piotrkomar.pl/HelloWorld/logout')
         self.c.perform()
-        self.print_response()
+        self.handle_response()
         return
 
     def page(self, page):
         logging.debug('trying to acces '+page)
         self.c.setopt(self.c.URL, 'http://piotrkomar.pl/HelloWorld/'+page)
         self.c.perform()
-        self.print_response()
+        self.handle_response()
         return
 
-    def print_response(self):
+    def handle_response(self):
+        self.responseTimes += self.c.getinfo(self.c.TOTAL_TIME)
         print('Status: %d' % self.c.getinfo(self.c.RESPONSE_CODE))
         print('Response time: %f' % self.c.getinfo(self.c.TOTAL_TIME))
         return
