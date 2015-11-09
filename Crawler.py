@@ -6,12 +6,14 @@ from time import sleep
 import sync_utils
 import sys
 
+
 class Crawler(threading.Thread):
     def __init__(self, thread_id):
         super(Crawler, self).__init__()
         self.thread_id = thread_id
         self.c = pycurl.Curl()
         self.responseTimes = 0
+        self.error_count = 0;
         self.verbose = False
         self.login_string = "krokiet"
         self.password_string = "pkpk11"
@@ -77,6 +79,8 @@ class Crawler(threading.Thread):
 
     def handle_response(self):
         self.responseTimes += self.c.getinfo(self.c.TOTAL_TIME)
+        if self.c.getinfo(self.c.RESPONSE_CODE) != 200:
+            self.error_count += 1
         if self.verbose:
             print('Crawler {0}: Status: {1}'.format(self.thread_id, self.c.getinfo(self.c.RESPONSE_CODE)))
             print('Crawler {0}: Response time: {1}'.format(self.thread_id, self.c.getinfo(self.c.TOTAL_TIME)))
