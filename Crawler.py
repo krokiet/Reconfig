@@ -4,6 +4,7 @@ import pycurl
 import random
 from time import sleep
 import sync_utils
+import sys
 
 class Crawler(threading.Thread):
     def __init__(self, thread_id):
@@ -74,6 +75,7 @@ class Crawler(threading.Thread):
     def handle_response(self):
         self.responseTimes += self.c.getinfo(self.c.TOTAL_TIME)
         if self.verbose:
-            print('Status: %d' % self.c.getinfo(self.c.RESPONSE_CODE))
-            print('Response time: %f' % self.c.getinfo(self.c.TOTAL_TIME))
+            print('Crawler {0}: Status: {1}'.format(self.thread_id, self.c.getinfo(self.c.RESPONSE_CODE)))
+            print('Crawler {0}: Response time: {1}'.format(self.thread_id, self.c.getinfo(self.c.TOTAL_TIME)))
+            sys.stdout.flush()
         return

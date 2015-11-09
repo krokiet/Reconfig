@@ -21,6 +21,7 @@ all_threads = []
 
 for i in range(thread_count):
     thread = Crawler.Crawler(i)
+    thread.verbose = True
     thread.start()
     all_threads.append(thread)
     if not sync_utils.synchronized_start:
