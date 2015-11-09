@@ -1,15 +1,12 @@
 #!/bin/python3
 import glob
 import logging
-import threading
 import os
-
 import Crawler
 import sync_utils
-import sys
 
 # level=CRITICAL, ERROR, WARNING,INFO, DEBUG, NOTSET
-logging.basicConfig(level=logging.ERROR, format='(%(threadName)-10s) %(message)s',)
+logging.basicConfig(level=logging.DEBUG, format='(%(threadName)-10s) %(message)s',)
 
 # remove old cookies
 files = glob.glob('cookies/*')
