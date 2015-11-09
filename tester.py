@@ -1,6 +1,9 @@
 #!/bin/python3
+import glob
 import logging
 import threading
+import os
+
 import Crawler
 import sync_utils
 import sys
@@ -8,11 +11,15 @@ import sys
 # level=CRITICAL, ERROR, WARNING,INFO, DEBUG, NOTSET
 logging.basicConfig(level=logging.ERROR, format='(%(threadName)-10s) %(message)s',)
 
+files = glob.glob('cookies/*')
+for f in files:
+    os.remove(f)
+
 thread_count = 3
 all_threads = []
 
 for i in range(thread_count):
-    thread = Crawler.Crawler()
+    thread = Crawler.Crawler(i)
     thread.start()
     all_threads.append(thread)
     if not sync_utils.synchronized_start:

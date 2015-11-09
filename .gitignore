@@ -1,6 +1,8 @@
 #IDE files
 *.directory
 *.kdev4
+*.orig
 
 #Other
-cookies.txt
+cookies*
+__pycache__
