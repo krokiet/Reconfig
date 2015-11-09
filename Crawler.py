@@ -2,6 +2,7 @@ import threading
 import logging
 import pycurl
 import random
+from time import sleep
 
 
 class Crawler(threading.Thread):
@@ -20,6 +21,7 @@ class Crawler(threading.Thread):
         self.init()
         self.login()
         # self.page("flat")
+        # self.revisit_page(100, "flat")
         self.crawl(20)
         self.logout()
         return
@@ -47,10 +49,16 @@ class Crawler(threading.Thread):
 
     def crawl(self, jumps):
         for i in range(1, jumps):
-            self.page(random.choice(self.pages))
+            self.visit_page(random.choice(self.pages))
+            sleep(0.5+random.uniform(0, 2))
         return
 
-    def page(self, page):
+    def revisit_page(self, page, visits):
+        for i in range(1, visits):
+            self.visit_page(page)
+        return
+
+    def visit_page(self, page):
         logging.debug('trying to acces ' + page)
         self.c.setopt(self.c.URL, 'http://piotrkomar.pl/HelloWorld/' + page)
         self.c.perform()
