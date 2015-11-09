@@ -35,3 +35,10 @@ if sync_utils.synchronized_start:
     for thread in all_threads:
         thread.join()
 
+for thread in all_threads:
+    thread.join()
+
+full_time_taken = sum(map(lambda x: thread.responseTimes, all_threads))
+longest_response_time = max(map(lambda x: thread.responseTimes, all_threads))
+
+print('Time fully spent on querying server: {0}s, longest response time: {1}s'.format(full_time_taken, longest_response_time))
