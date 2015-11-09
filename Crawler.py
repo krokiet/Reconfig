@@ -2,9 +2,7 @@ import threading
 import logging
 import pycurl
 import random
-from tester import barrier
-from tester import running
-
+import sync_utils
 
 class Crawler(threading.Thread):
     def __init__(self):
@@ -19,10 +17,11 @@ class Crawler(threading.Thread):
 
 
     def run(self):
-        tester.barrier.acquire()
-        while not tester.running:
-            tester.barrier.wait()
-        tester.barrier.release()
+        if sync_utils.synchronized_start:
+            sync_utils.barrier.acquire()
+            while not sync_utils.running:
+                sync_utils.barrier.wait()
+            sync_utils.barrier.release()
         self.init()
         self.login()
         # self.page("flat")
