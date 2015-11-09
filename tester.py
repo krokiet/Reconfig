@@ -16,7 +16,7 @@ files = glob.glob('cookies/*')
 for f in files:
     os.remove(f)
 
-thread_count = 3
+thread_count = 15
 all_threads = []
 
 for i in range(thread_count):
@@ -26,8 +26,6 @@ for i in range(thread_count):
     all_threads.append(thread)
     if not sync_utils.synchronized_start:
         thread.join()
-        print('Total response time: %f' % thread.responseTimes)
-        sys.stdout.flush()
 
 if sync_utils.synchronized_start:
     sync_utils.barrier.acquire()
@@ -36,6 +34,4 @@ if sync_utils.synchronized_start:
     sync_utils.barrier.release()
     for thread in all_threads:
         thread.join()
-        print('Total response time: %f' % thread.responseTimes)
-        sys.stdout.flush()
 

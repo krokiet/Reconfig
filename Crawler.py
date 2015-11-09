@@ -18,19 +18,22 @@ class Crawler(threading.Thread):
         self.pages = ['home', 'accountManagement', 'flat', 'mailbox', 'about', 'aboutFlat', 'aboutMoney',
                       'aboutChores']
 
-
-    def run(self):
+    def conditionally_wait(self):
         if sync_utils.synchronized_start:
             sync_utils.barrier.acquire()
             while not sync_utils.running:
                 sync_utils.barrier.wait()
             sync_utils.barrier.release()
+
+    def run(self):
+        self.conditionally_wait()
         self.init()
         self.login()
         # self.page("flat")
         # self.revisit_page(100, "flat")
         self.crawl(20)
         self.logout()
+        print('Crawler {0}: Total response time: {1}'.format(self.thread_id, self.responseTimes))
         return
 
     def init(self):
