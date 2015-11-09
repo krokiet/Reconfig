@@ -13,7 +13,7 @@ files = glob.glob('cookies/*')
 for f in files:
     os.remove(f)
 
-thread_count = 15
+thread_count = 80
 all_threads = []
 
 for i in range(thread_count):
@@ -35,7 +35,9 @@ if sync_utils.synchronized_start:
 for thread in all_threads:
     thread.join()
 
-full_time_taken = sum(map(lambda x: thread.responseTimes, all_threads))
-longest_response_time = max(map(lambda x: thread.responseTimes, all_threads))
+list_of_tuples = [item for sublist in [item.responses for item in all_threads] for item in sublist]
 
-print('Time fully spent on querying server: {0}s, longest response time: {1}s'.format(full_time_taken, longest_response_time))
+longest_response_time = max(list_of_tuples, key=lambda item:item[1])
+mean_response_time = float(sum(y for x, y in list_of_tuples))/max(len(list_of_tuples), 1)
+
+print('Longest response time: {0}s, Mean response time: {1}s'.format(longest_response_time, mean_response_time))

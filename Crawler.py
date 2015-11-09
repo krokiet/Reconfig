@@ -8,17 +8,16 @@ import sys
 
 
 class Crawler(threading.Thread):
+    pages = ['home', 'accountManagement', 'flat', 'mailbox', 'about', 'aboutFlat', 'aboutMoney', 'aboutChores']
+    login_string = "krokiet"
+    password_string = "pkpk11"
+
     def __init__(self, thread_id):
         super(Crawler, self).__init__()
         self.thread_id = thread_id
         self.c = pycurl.Curl()
-        self.responseTimes = 0
-        self.error_count = 0;
-        self.verbose = False
-        self.login_string = "krokiet"
-        self.password_string = "pkpk11"
-        self.pages = ['home', 'accountManagement', 'flat', 'mailbox', 'about', 'aboutFlat', 'aboutMoney',
-                      'aboutChores']
+        self.responses = []
+        self.error_count = 0
 
     def conditionally_wait(self):
         if sync_utils.synchronized_start:
@@ -33,14 +32,14 @@ class Crawler(threading.Thread):
         self.login()
         # self.page("flat")
         # self.revisit_page(100, "flat")
-        self.crawl(20)
+        self.crawl(5)
         self.logout()
-        print('Crawler {0}: Total response time: {1}'.format(self.thread_id, self.responseTimes))
+        logging.debug('All responses: {1}'.format(self.thread_id, self.responses))
         return
 
     def init(self):
-        self.c.setopt(self.c.COOKIEFILE, 'cookies/cookies'+str(self.thread_id)+'.txt')
-        self.c.setopt(self.c.COOKIEJAR, 'cookies/cookies'+str(self.thread_id)+'.txt')
+        self.c.setopt(self.c.COOKIEFILE, 'cookies/cookies' + str(self.thread_id) + '.txt')
+        self.c.setopt(self.c.COOKIEJAR, 'cookies/cookies' + str(self.thread_id) + '.txt')
         return
 
     def login(self):
@@ -62,7 +61,7 @@ class Crawler(threading.Thread):
     def crawl(self, jumps):
         for i in range(1, jumps):
             self.visit_page(random.choice(self.pages))
-            sleep(0.5+random.uniform(0, 2))
+            sleep(0.5 + random.uniform(0, 2))
         return
 
     def revisit_page(self, page, visits):
@@ -78,11 +77,9 @@ class Crawler(threading.Thread):
         return
 
     def handle_response(self):
-        self.responseTimes += self.c.getinfo(self.c.TOTAL_TIME)
+        self.responses.append(('HTTP' + str(self.c.getinfo(self.c.RESPONSE_CODE)), self.c.getinfo(self.c.TOTAL_TIME)))
         if self.c.getinfo(self.c.RESPONSE_CODE) != 200:
             self.error_count += 1
-        if self.verbose:
-            print('Crawler {0}: Status: {1}'.format(self.thread_id, self.c.getinfo(self.c.RESPONSE_CODE)))
-            print('Crawler {0}: Response time: {1}'.format(self.thread_id, self.c.getinfo(self.c.TOTAL_TIME)))
-            sys.stdout.flush()
+        logging.debug('Status: {1}'.format(self.thread_id, self.c.getinfo(self.c.RESPONSE_CODE)))
+        logging.debug('Response time: {1}'.format(self.thread_id, self.c.getinfo(self.c.TOTAL_TIME)))
         return
