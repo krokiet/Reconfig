@@ -1,3 +1,6 @@
 #IDE files
 *.directory
 *.kdev4
+
+#Other
+cookies.txt
