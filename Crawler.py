@@ -2,6 +2,8 @@ import threading
 import logging
 import pycurl
 import random
+from tester import barrier
+from tester import running
 
 
 class Crawler(threading.Thread):
@@ -15,7 +17,12 @@ class Crawler(threading.Thread):
         self.pages = ['home', 'accountManagement', 'flat', 'mailbox', 'about', 'aboutFlat', 'aboutMoney',
                       'aboutChores']
 
+
     def run(self):
+        tester.barrier.acquire()
+        while not tester.running:
+            tester.barrier.wait()
+        tester.barrier.release()
         self.init()
         self.login()
         # self.page("flat")
