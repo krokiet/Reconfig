@@ -40,7 +40,7 @@ list_of_tuples = list_of_tuples[cut_length:-cut_length]
 
 print(list_of_tuples)
 
-longest_response_time = max(list_of_tuples, key=lambda item:item[1])
+longest_response_time = max(list_of_tuples, key=lambda item: item[1])
 mean_response_time = float(sum(y for x, y in list_of_tuples))/max(len(list_of_tuples), 1)
 
 print('Longest response time: {0}s, Mean response time: {1}s'.format(longest_response_time, mean_response_time))
