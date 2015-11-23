@@ -12,13 +12,12 @@ logging.basicConfig(level=logging.DEBUG, format='(%(threadName)-10s) %(message)s
 files = glob.glob('cookies/*')
 for f in files:
     os.remove(f)
-cut_length = 2
-thread_count = 3
+cut_length = 4
+thread_count = 20
 all_threads = []
 
 for i in range(thread_count):
-    thread = Crawler.Crawler(i)
-    thread.verbose = True
+    thread = Crawler.Crawler(i, 50)
     thread.start()
     all_threads.append(thread)
     if not sync_utils.synchronized_start:
