@@ -32,7 +32,7 @@ class Crawler(threading.Thread):
         self.login()
         # self.page("flat")
         # self.revisit_page(100, "flat")
-        self.crawl(20)
+        self.crawl(50)
         self.logout()
         logging.debug('All responses: {1}'.format(self.thread_id, self.responses))
         return
