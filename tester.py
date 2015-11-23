@@ -12,8 +12,8 @@ logging.basicConfig(level=logging.DEBUG, format='(%(threadName)-10s) %(message)s
 files = glob.glob('cookies/*')
 for f in files:
     os.remove(f)
-
-thread_count = 80
+cut_length = 2
+thread_count = 3
 all_threads = []
 
 for i in range(thread_count):
@@ -36,6 +36,9 @@ for thread in all_threads:
     thread.join()
 
 list_of_tuples = [item for sublist in [item.responses for item in all_threads] for item in sublist]
+list_of_tuples = list_of_tuples[cut_length:-cut_length]
+
+print(list_of_tuples)
 
 longest_response_time = max(list_of_tuples, key=lambda item:item[1])
 mean_response_time = float(sum(y for x, y in list_of_tuples))/max(len(list_of_tuples), 1)
