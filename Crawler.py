@@ -1,6 +1,7 @@
 import Connector
 import random
 import logging
+from time import sleep
 
 
 class Crawler(Connector.Connector):
@@ -18,7 +19,7 @@ class Crawler(Connector.Connector):
         return
 
     def crawl(self):
-        for i in range(1, self.crawling_steps):
+        for i in range(self.crawling_steps):
             self.visit_page(random.choice(self.pages))
             sleep(0.5 + random.uniform(0, 2))
         return

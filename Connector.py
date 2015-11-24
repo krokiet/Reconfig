@@ -1,7 +1,6 @@
 import threading
 import logging
 import pycurl
-from time import sleep
 import sync_utils
 import sys
 
@@ -10,6 +9,7 @@ class Connector(threading.Thread):
     pages = ['home', 'accountManagement', 'flat', 'mailbox', 'about', 'aboutFlat', 'aboutMoney', 'aboutChores']
     login_string = "krokiet"
     password_string = "pkpk11"
+    address_base = '192.168.0.100'
 
     def __init__(self, thread_id):
         super(Connector, self).__init__()
@@ -34,7 +34,7 @@ class Connector(threading.Thread):
 
     def login(self):
         logging.debug('trying to login')
-        self.c.setopt(self.c.URL, 'http://piotrkomar.pl/HelloWorld/login')
+        self.c.setopt(self.c.URL, self.address_base + '/HelloWorld/login')
         self.c.setopt(self.c.POSTFIELDS, 'login=' + self.login_string + '&password=' + self.password_string)
         self.c.setopt(pycurl.WRITEFUNCTION, lambda x: None)
         self.c.perform()
@@ -43,19 +43,19 @@ class Connector(threading.Thread):
 
     def logout(self):
         logging.debug('trying to logout')
-        self.c.setopt(self.c.URL, 'http://piotrkomar.pl/HelloWorld/logout')
+        self.c.setopt(self.c.URL, self.address_base + '/HelloWorld/logout')
         self.c.perform()
         self.handle_response()
         return
 
     def revisit_page(self, page, visits):
-        for i in range(1, visits):
+        for i in range(visits):
             self.visit_page(page)
         return
 
     def visit_page(self, page):
         logging.debug('trying to acces ' + page)
-        self.c.setopt(self.c.URL, 'http://piotrkomar.pl/HelloWorld/' + page)
+        self.c.setopt(self.c.URL, self.address_base + '/HelloWorld/' + page)
         self.c.perform()
         self.handle_response()
         return
