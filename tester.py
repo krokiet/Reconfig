@@ -3,10 +3,11 @@ import glob
 import logging
 import os
 import Crawler
-import timed_user
 import sync_utils
 import statistics
 import sys
+import ddoser
+from time import sleep
 
 # level=CRITICAL, ERROR, WARNING,INFO, DEBUG, NOTSET
 logging.basicConfig(level=logging.ERROR, format='(%(threadName)-10s) %(message)s',)
@@ -17,29 +18,30 @@ def clear_cookies():
     for f in files:
         os.remove(f)
 
-print("\n\n\n users per second \n\n\n")
+print("\n\n\n 400 users, 20 times login -logout, inserted with varying frequency \n\n\n")
 
 # timed_users
 def test1():
-    for num_of_users_per_sec in [20, 40, 60, 80, 100, 120, 140, 160, 180, 200, 220, 240, 260, 280, 300]:
+    for num_of_users_per_sec in [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]:
         number_of_runs = 1
 
         all_threads = []
         for run in range(number_of_runs):
             clear_cookies()
-            thread_count = num_of_users_per_sec
+            thread_count = 400
             cut_length = int(0.1 * thread_count)
-
-            for i in range(thread_count):
-                thread = timed_user.timed_user(i, 1.0/num_of_users_per_sec * i)
-                thread.start()
-                all_threads.append(thread)
 
             if sync_utils.synchronized_start:
                 sync_utils.barrier.acquire()
                 sync_utils.running = True
                 sync_utils.barrier.notify_all()
                 sync_utils.barrier.release()
+
+            for i in range(thread_count):
+                sleep(1.0 / num_of_users_per_sec * i)
+                thread = ddoser.ddoser(i, 20)
+                thread.start()
+                all_threads.append(thread)
 
             for thread in all_threads:
                 thread.join()
@@ -58,7 +60,7 @@ def test1():
         length = len(list_of_tuples)
         error_count = length - [item[0] for item in list_of_tuples].count('HTTP200')
 
-        print('longest time: {0} lowest time: {1} mean time: {2} median time: {3} deviation: {4} numOf responses: {5} error count: {6} with {7} instant log-in, log-out users inserted per second'
+        print('longest time: {0} lowest time: {1} mean time: {2} median time: {3} deviation: {4} numOf responses: {5} error count: {6} with {7} log-in, log-out x20 users inserted per second, 400 total users'
               .format(longest_time, lowest_time, mean_time, median_time, std_deviation, length, error_count, num_of_users_per_sec))
         sys.stdout.flush()
 test1()
@@ -109,7 +111,7 @@ def test2():
         sys.stdout.flush()
 test2()
 
-print("\n\n\n crawl x0 \n\n\n")
+print("\n\n\n login - logout x100 \n\n\n")
 
 # parallel login
 def test3():
@@ -123,7 +125,7 @@ def test3():
             cut_length = int(0.1 * thread_count)
 
             for i in range(thread_count):
-                thread = Crawler.Crawler(i, 0)
+                thread = ddoser.ddoser(i, 100)
                 thread.start()
                 all_threads.append(thread)
 
@@ -150,7 +152,7 @@ def test3():
         length = len(list_of_tuples)
         error_count = length - [item[0] for item in list_of_tuples].count('HTTP200')
 
-        print('longest time: {0} lowest time: {1} mean time: {2} median time: {3} deviation: {4} numOf responses: {5} error count: {6} with {7} instant log-in, log-out users'
+        print('longest time: {0} lowest time: {1} mean time: {2} median time: {3} deviation: {4} numOf responses: {5} error count: {6} with {7} logging in logging out x100 users'
               .format(longest_time, lowest_time, mean_time, median_time, std_deviation, length, error_count, num_of_users))
         sys.stdout.flush()
 test3()
