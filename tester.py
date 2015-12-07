@@ -69,7 +69,7 @@ print("\n\n\n crawl x20 \n\n\n")
 
 # parallel crawling
 def test2():
-    for num_of_users in [20, 40, 60, 80, 100, 120, 140, 160, 180, 200, 220, 240, 260, 280, 300]:
+    for num_of_users in [20, 40, 60, 80, 100, 120, 140, 160, 180, 200, 220, 240, 260, 280, 300, 320, 340, 360, 380, 400]:
         number_of_runs = 1
 
         all_threads = []
@@ -115,7 +115,7 @@ print("\n\n\n login - logout x100 \n\n\n")
 
 # parallel login
 def test3():
-    for num_of_users in [20, 40, 60, 80, 100, 120, 140, 160, 180, 200, 220, 240, 260, 280, 300]:
+    for num_of_users in [20, 40, 60, 80, 100, 120, 140, 160, 180, 200, 220, 240, 260, 280, 300, 320, 340, 360, 380, 400]:
         number_of_runs = 1
 
         all_threads = []
