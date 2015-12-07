@@ -37,14 +37,12 @@ class Connector(threading.Thread):
         self.c.setopt(self.c.URL, self.address_base + '/HelloWorld/login')
         self.c.setopt(self.c.POSTFIELDS, 'login=' + self.login_string + '&password=' + self.password_string)
         self.c.setopt(pycurl.WRITEFUNCTION, lambda x: None)
-        self.c.perform()
         self.handle_response()
         return
 
     def logout(self):
         logging.debug('trying to logout')
         self.c.setopt(self.c.URL, self.address_base + '/HelloWorld/logout')
-        self.c.perform()
         self.handle_response()
         return
 
@@ -56,14 +54,18 @@ class Connector(threading.Thread):
     def visit_page(self, page):
         logging.debug('trying to acces ' + page)
         self.c.setopt(self.c.URL, self.address_base + '/HelloWorld/' + page)
-        self.c.perform()
         self.handle_response()
         return
 
     def handle_response(self):
-        self.responses.append(('HTTP' + str(self.c.getinfo(self.c.RESPONSE_CODE)), self.c.getinfo(self.c.TOTAL_TIME)))
-        if self.c.getinfo(self.c.RESPONSE_CODE) != 200:
-            self.error_count += 1
+        try:
+            self.c.perform()
+            self.responses.append(('HTTP' + str(self.c.getinfo(self.c.RESPONSE_CODE)), self.c.getinfo(self.c.TOTAL_TIME)))
+            if self.c.getinfo(self.c.RESPONSE_CODE) != 200:
+                self.error_count += 1
+        except:
+            self.responses.append(('pycurlExcept'), self.c.getinfo(self.c.TOTAL_TIME)))
+
         logging.debug('Status: {1}'.format(self.thread_id, self.c.getinfo(self.c.RESPONSE_CODE)))
         logging.debug('Response time: {1}'.format(self.thread_id, self.c.getinfo(self.c.TOTAL_TIME)))
         return
