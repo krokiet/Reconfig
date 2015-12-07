@@ -64,7 +64,7 @@ class Connector(threading.Thread):
             if self.c.getinfo(self.c.RESPONSE_CODE) != 200:
                 self.error_count += 1
         except:
-            self.responses.append(('pycurlExcept'), self.c.getinfo(self.c.TOTAL_TIME)))
+            self.responses.append(('pycurlExcept', self.c.getinfo(self.c.TOTAL_TIME)))
 
         logging.debug('Status: {1}'.format(self.thread_id, self.c.getinfo(self.c.RESPONSE_CODE)))
         logging.debug('Response time: {1}'.format(self.thread_id, self.c.getinfo(self.c.TOTAL_TIME)))

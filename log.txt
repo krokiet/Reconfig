@@ -1,47 +1,7 @@
-Longest response time: ('HTTP200', 0.164467)s, Lowest response time: ('HTTP200', 0.014854)s Mean response time: 0.07583266666666667s with 10 instant log-in, log-out users introduced per second
-Longest response time: ('HTTP200', 2.183393)s, Lowest response time: ('HTTP200', 0.014716)s Mean response time: 0.28628891111111116s with 20 instant log-in, log-out users introduced per second
-Longest response time: ('HTTP200', 0.655212)s, Lowest response time: ('HTTP200', 0.016784)s Mean response time: 0.3208721333333333s with 30 instant log-in, log-out users introduced per second
-Longest response time: ('HTTP200', 2.808624)s, Lowest response time: ('HTTP200', 0.013887)s Mean response time: 0.52315815s with 40 instant log-in, log-out users introduced per second
-Longest response time: ('HTTP200', 3.006683)s, Lowest response time: ('HTTP200', 0.154103)s Mean response time: 0.9354693199999999s with 50 instant log-in, log-out users introduced per second
-Longest response time: ('HTTP200', 3.23043)s, Lowest response time: ('HTTP200', 0.016262)s Mean response time: 1.1067805185185187s with 60 instant log-in, log-out users introduced per second
-Longest response time: ('HTTP200', 3.584553)s, Lowest response time: ('HTTP200', 0.015653)s Mean response time: 1.354676419047619s with 70 instant log-in, log-out users introduced per second
-Longest response time: ('HTTP200', 4.167013)s, Lowest response time: ('HTTP200', 0.062138)s Mean response time: 1.5900197583333326s with 80 instant log-in, log-out users introduced per second
-Longest response time: ('HTTP200', 4.684456)s, Lowest response time: ('HTTP200', 0.308757)s Mean response time: 1.8284241123456788s with 90 instant log-in, log-out users introduced per second
-Longest response time: ('HTTP200', 4.973674)s, Lowest response time: ('HTTP200', 0.311549)s Mean response time: 2.0747191277777777s with 100 instant log-in, log-out users introduced per second
-Longest response time: ('HTTP200', 5.354392)s, Lowest response time: ('HTTP200', 0.355752)s Mean response time: 2.3211460787878786s with 110 instant log-in, log-out users introduced per second
-Longest response time: ('HTTP200', 6.086758)s, Lowest response time: ('HTTP200', 0.344425)s Mean response time: 2.7481308268518516s with 120 instant log-in, log-out users introduced per second
-Longest response time: ('HTTP200', 6.313599)s, Lowest response time: ('HTTP200', 0.372229)s Mean response time: 2.805414188888889s with 130 instant log-in, log-out users introduced per second
-Longest response time: ('HTTP200', 6.998759)s, Lowest response time: ('HTTP200', 0.368209)s Mean response time: 3.2282287738095237s with 140 instant log-in, log-out users introduced per second
-Longest response time: ('HTTP200', 5.618055)s, Lowest response time: ('HTTP200', 0.390165)s Mean response time: 3.2163703340740755s with 150 instant log-in, log-out users introduced per second
-Longest response time: ('HTTP200', 16.455738)s, Lowest response time: ('HTTP200', 0.014138)s Mean response time: 4.592558772777776s with 200 instant log-in, log-out users introduced per second
-Longest response time: ('HTTP200', 1.999539)s, Lowest response time: ('HTTP200', 0.014796)s Mean response time: 0.12234412568807337s with 10 crawling users
-Longest response time: ('HTTP200', 2.226665)s, Lowest response time: ('HTTP200', 0.014228)s Mean response time: 0.1892587743119265s with 20 crawling users
-Longest response time: ('HTTP200', 3.094661)s, Lowest response time: ('HTTP200', 0.014261)s Mean response time: 0.2324633431192662s with 30 crawling users
-Longest response time: ('HTTP200', 3.111227)s, Lowest response time: ('HTTP200', 0.013759)s Mean response time: 0.3107218729357796s with 40 crawling users
-Longest response time: ('HTTP200', 3.846585)s, Lowest response time: ('HTTP200', 0.014278)s Mean response time: 0.41794860348623863s with 50 crawling users
-Longest response time: ('HTTP200', 5.918323)s, Lowest response time: ('HTTP200', 0.014197)s Mean response time: 0.5799169067278289s with 60 crawling users
-Longest response time: ('HTTP200', 5.00245)s, Lowest response time: ('HTTP200', 0.014245)s Mean response time: 0.842954996068153s with 70 crawling users
-Longest response time: ('HTTP200', 5.263443)s, Lowest response time: ('HTTP200', 0.014236)s Mean response time: 1.1228077959862386s with 80 crawling users
-Longest response time: ('HTTP200', 7.757845)s, Lowest response time: ('HTTP200', 0.014068)s Mean response time: 1.4477712973496435s with 90 crawling users
-Longest response time: ('HTTP200', 6.559299)s, Lowest response time: ('HTTP200', 0.014238)s Mean response time: 1.754343169357798s with 100 crawling users
-Longest response time: ('HTTP200', 6.854509)s, Lowest response time: ('HTTP200', 0.014359)s Mean response time: 2.075013981484569s with 110 crawling users
-Longest response time: ('HTTP200', 9.913792)s, Lowest response time: ('HTTP200', 0.014106)s Mean response time: 2.3736568909785936s with 120 crawling users
-Longest response time: ('HTTP200', 8.718834)s, Lowest response time: ('HTTP200', 0.01415)s Mean response time: 2.7018150575158772s with 130 crawling users
-Longest response time: ('HTTP200', 9.826484)s, Lowest response time: ('HTTP200', 0.014621)s Mean response time: 3.0546316789646117s with 140 crawling users
-Longest response time: ('HTTP200', 10.289594)s, Lowest response time: ('HTTP200', 0.014552)s Mean response time: 3.367615378042815s with 150 crawling users
-Longest response time: ('HTTP200', 0.57641)s, Lowest response time: ('HTTP200', 0.015095)s Mean response time: 0.23438233333333333s with 10 instant log-in, log-out users
-Longest response time: ('HTTP200', 1.002294)s, Lowest response time: ('HTTP200', 0.01528)s Mean response time: 0.4561265222222223s with 20 instant log-in, log-out users
-Longest response time: ('HTTP200', 1.474245)s, Lowest response time: ('HTTP200', 0.047929)s Mean response time: 0.6918064333333335s with 30 instant log-in, log-out users
-Longest response time: ('HTTP200', 3.34907)s, Lowest response time: ('HTTP200', 0.069522)s Mean response time: 1.0666525166666667s with 40 instant log-in, log-out users
-Longest response time: ('HTTP200', 2.275082)s, Lowest response time: ('HTTP200', 0.124223)s Mean response time: 1.1502670599999998s with 50 instant log-in, log-out users
-Longest response time: ('HTTP200', 4.181985)s, Lowest response time: ('HTTP200', 0.129167)s Mean response time: 1.518888424074074s with 60 instant log-in, log-out users
-Longest response time: ('HTTP200', 4.539601)s, Lowest response time: ('HTTP200', 0.014865)s Mean response time: 1.7336624841269845s with 70 instant log-in, log-out users
-Longest response time: ('HTTP200', 3.5627180000000003)s, Lowest response time: ('HTTP200', 0.186242)s Mean response time: 1.7972052138888892s with 80 instant log-in, log-out users
-Longest response time: ('HTTP200', 5.573438)s, Lowest response time: ('HTTP200', 0.184766)s Mean response time: 2.189191306172839s with 90 instant log-in, log-out users
-Longest response time: ('HTTP200', 5.901112)s, Lowest response time: ('HTTP200', 0.186396)s Mean response time: 2.3989402066666665s with 100 instant log-in, log-out users
-Longest response time: ('HTTP200', 6.954303)s, Lowest response time: ('HTTP200', 0.038062)s Mean response time: 2.474314946464646s with 110 instant log-in, log-out users
-Longest response time: ('HTTP200', 6.714279)s, Lowest response time: ('HTTP200', 0.12972499999999998)s Mean response time: 2.8643217749999996s with 120 instant log-in, log-out users
-Longest response time: ('HTTP200', 7.356456)s, Lowest response time: ('HTTP200', 0.212881)s Mean response time: 3.0686071786324773s with 130 instant log-in, log-out users
-Longest response time: ('HTTP200', 7.65762)s, Lowest response time: ('HTTP200', 0.185423)s Mean response time: 3.1802851920634923s with 140 instant log-in, log-out users
-Longest response time: ('HTTP200', 8.459241)s, Lowest response time: ('HTTP200', 0.032432)s Mean response time: 3.603243042222222s with 150 instant log-in, log-out users
-Longest response time: ('HTTP200', 17.116991)s, Lowest response time: ('HTTP200', 0.014362)s Mean response time: 4.288450196111112s with 200 instant log-in, log-out users
+
+
+
+ 400 users, 20 times login -logout, inserted with varying frequency 
+
+
+

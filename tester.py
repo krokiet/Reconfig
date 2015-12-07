@@ -18,7 +18,7 @@ def clear_cookies():
     for f in files:
         os.remove(f)
 
-print("\n\n\n 400 users, 20 times login -logout, inserted with varying frequency \n\n\n")
+print("\n\n\n 400 users, 1 time login -logout, inserted with varying frequency \n\n\n")
 
 # timed_users
 def test1():
@@ -39,7 +39,7 @@ def test1():
 
             for i in range(thread_count):
                 sleep(1.0 / num_of_users_per_sec * i)
-                thread = ddoser.ddoser(i, 20)
+                thread = ddoser.ddoser(i, 1)
                 thread.start()
                 all_threads.append(thread)
 
@@ -60,7 +60,7 @@ def test1():
         length = len(list_of_tuples)
         error_count = length - [item[0] for item in list_of_tuples].count('HTTP200')
 
-        print('longest time: {0} lowest time: {1} mean time: {2} median time: {3} deviation: {4} numOf responses: {5} error count: {6} with {7} log-in, log-out x20 users inserted per second, 400 total users'
+        print('longest time: {0} lowest time: {1} mean time: {2} median time: {3} deviation: {4} numOf responses: {5} error count: {6} with {7} log-in, log-out x1 users inserted per second, 400 total users'
               .format(longest_time, lowest_time, mean_time, median_time, std_deviation, length, error_count, num_of_users_per_sec))
         sys.stdout.flush()
 test1()
@@ -106,12 +106,12 @@ def test2():
         length = len(list_of_tuples)
         error_count = length - [item[0] for item in list_of_tuples].count('HTTP200')
 
-        print('longest time: {0} lowest time: {1} mean time: {2} median time: {3} deviation: {4} numOf responses: {5} error count: {6} with {7} 20-times crawling users'
+        print('longest time: {0} lowest time: {1} mean time: {2} median time: {3} deviation: {4} numOf responses: {5} error count: {6} with {7} crawling 20-times users'
               .format(longest_time, lowest_time, mean_time, median_time, std_deviation, length, error_count, num_of_users))
         sys.stdout.flush()
 test2()
 
-print("\n\n\n login - logout x100 \n\n\n")
+print("\n\n\n login - logout x40 \n\n\n")
 
 # parallel login
 def test3():
@@ -125,7 +125,7 @@ def test3():
             cut_length = int(0.1 * thread_count)
 
             for i in range(thread_count):
-                thread = ddoser.ddoser(i, 100)
+                thread = ddoser.ddoser(i, 40)
                 thread.start()
                 all_threads.append(thread)
 
@@ -152,7 +152,7 @@ def test3():
         length = len(list_of_tuples)
         error_count = length - [item[0] for item in list_of_tuples].count('HTTP200')
 
-        print('longest time: {0} lowest time: {1} mean time: {2} median time: {3} deviation: {4} numOf responses: {5} error count: {6} with {7} logging in logging out x100 users'
+        print('longest time: {0} lowest time: {1} mean time: {2} median time: {3} deviation: {4} numOf responses: {5} error count: {6} with {7} logging in logging out 40-times users'
               .format(longest_time, lowest_time, mean_time, median_time, std_deviation, length, error_count, num_of_users))
         sys.stdout.flush()
 test3()
